@@ -1,0 +1,23 @@
+.container-404 {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+}
+
+.infos-404 {
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  h3, button {
+    margin: 16px auto;
+    color: #333333;
+  }
+}
+
+.shape  {
+  fill: #333333;
+  position: fixed;
+  width: 100vw;
+  top: 0;
+  left: 0;
+}
