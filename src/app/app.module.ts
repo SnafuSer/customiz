@@ -39,7 +39,7 @@ import { HomePage } from './pages/home/home';
     SharedModule,
     ServiceModule,
     StoreModule.forRoot(reducers, { initialState: INITIAL_STATE }),
-    StoreDevtoolsModule.instrument({ maxAge: 10, name: '[DRINKSCAN]' }),
+    StoreDevtoolsModule.instrument({ maxAge: 10, name: '[CUSTOMIZ]' }),
   ],
   providers: [],
   bootstrap: [AppComponent]
