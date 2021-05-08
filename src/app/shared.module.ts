@@ -6,7 +6,12 @@
 // ***** @angular *****
 import { CommonModule } from '@angular/common'
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
+import { HttpClientModule } from '@angular/common/http';
+import { CloudinaryModule } from '@cloudinary/angular-5.x';
+import  * as CloudinaryCore from 'cloudinary-core';
+
 // ***** Material *****
 import {
   MatButtonModule,
@@ -37,13 +42,17 @@ import {
 // ***** App *****
 
 // ***** Pipe *****
-
+export const cloudinary = {
+  Cloudinary: CloudinaryCore
+};
 @NgModule({
   declarations: [
   ],
   imports: [
     CommonModule,
     BrowserModule,
+    FormsModule,
+    HttpClientModule,
     MatButtonModule,
     MatCheckboxModule,
     MatInputModule,
@@ -62,13 +71,18 @@ import {
     MatSelectModule,
     MatGridListModule,
     MatToolbarModule,
-    MatIconModule
+    MatIconModule,
+    CloudinaryModule.forRoot(CloudinaryCore, { cloud_name: 'deck4daxl'}),
+
   ],
   providers: [
+    CloudinaryModule,
+
   ],
   bootstrap: [],
   entryComponents: [],
   exports: [
+    HttpClientModule,
     MatButtonModule,
     MatCheckboxModule,
     MatInputModule,

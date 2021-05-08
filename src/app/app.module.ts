@@ -1,5 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -18,23 +19,24 @@ import { ServiceModule } from '../services/services.module';
 import { ModalModule } from "../components/modals/modal.module";
 
 // ***** Pages *****
-import { PagesComponent } from './pages/pages';
-import { NotFoundPage } from './notFound/notFound.page';
-import { LoginPage } from './login/login.page';
-import { HomePage } from './pages/home/home';
+import { Preview } from './preview/preview';
+import { Selections } from './selection/selection';
+
+// ***** Libs *****
+import { InlineSVGModule } from 'ng-inline-svg';
 
 @NgModule({
   declarations: [
     AppComponent,
-    PagesComponent,
-    NotFoundPage,
-    LoginPage,
-    HomePage,
+    Preview,
+    Selections,
   ],
   imports: [
     BrowserModule,
+    FormsModule,
     AppRoutingModule,
     BrowserAnimationsModule,
+    InlineSVGModule.forRoot(),
     ModalModule,
     SharedModule,
     ServiceModule,

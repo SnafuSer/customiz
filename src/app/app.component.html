@@ -1,3 +1,15 @@
+<div class="container-app"  *ngIf="display === true">
 
+    <selection></selection>
+    <preview class="capture-id"></preview>
 
-<router-outlet></router-outlet>
+</div>
+<!-- <button (click)="myClickFunction()">Click</button> -->
+<div class="loader-container" *ngIf="loading">
+    <div class="loader">
+        <svg class="circular" viewBox="25 25 50 50">
+          <circle class="path" cx="50" cy="50" r="20" fill="none" stroke-width="2" stroke-miterlimit="10"/>
+        </svg>
+      </div>
+    <h4 class="title">{{ loadingText }}</h4>
+</div>

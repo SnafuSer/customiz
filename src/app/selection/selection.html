@@ -1,0 +1,184 @@
+<div class="container-step2">
+  <div class="tabs">
+    <!-- <div class="tab" [ngClass]="{'selected': item.selected === true}" (click)="setActiveTab(i)">
+      Décor
+    </div>
+    <div class="tab" [ngClass]="{'selected': item.selected === true}" (click)="setActiveTab(i)">
+      Texte
+    </div> -->
+    <div class="tab" [ngClass]="{'selected': item.selected === true}" *ngFor="let item of tabs; let i = index" (click)="setActiveTab(i, 'tabs')">
+      <img class="icon" [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614616677/mugs/icons/' + item.id + '.png'" alt="">
+      <span class="text">
+        {{ item?.name }}
+      </span>
+    </div>
+    <div class="tab" [ngClass]="{'selected': item.selected === true}" *ngFor="let item of listCharacters; let i = index" (click)="setActiveTab(i, 'characters')">
+      <img class="icon" src="https://res.cloudinary.com/deck4daxl/image/upload/v1614616677/mugs/icons/user.png" alt="">
+      <span class="text">
+        {{ item?.name }}
+      </span>
+    </div>
+    <div class="tab" *ngIf="listCharacters.length < 4" (click)="addCharacter()">
+      <img class="icon" src="https://res.cloudinary.com/deck4daxl/image/upload/v1614616677/mugs/icons/add.png" alt="">
+      <span class="text">
+        Ajouter
+      </span>
+    </div>
+  </div>
+  <div class="choices-panel">
+    <div *ngIf="display === 'text'">
+      <div class="tabs-side">
+        <div class="tab" (click)="changeSide('side1')" [ngClass]="{'selected': tabSide === 'side1'}">
+          <img class="icon mirror" src="https://res.cloudinary.com/deck4daxl/image/upload/v1615112742/mugs/icons/mug.png" alt="">
+          <span class="text">
+            Face 1
+          </span>
+        </div>
+        <div class="tab" (click)="changeSide('side2')" [ngClass]="{'selected': tabSide === 'side2'}">
+          <img class="icon" src="https://res.cloudinary.com/deck4daxl/image/upload/v1615112742/mugs/icons/mug.png" alt="">
+          <span class="text">
+            Face 2
+          </span>
+        </div>
+      </div>
+      <div class="text-display" *ngIf="tabSide === 'side1'">
+        <h5>Vous pouvez selectionner un titre pour l'image</h5>
+        <div class="text-item" [ngClass]="{'selected': text.selected === true}" *ngFor="let text of textTitle" (click)="changeTextTitle(text)" >
+          {{ text.title }}
+        </div>
+      </div>
+      <div class="text-display" *ngIf="tabSide === 'side2'">
+        <h5>Laissez un texte si vous le souhaitez (max 50 charactères)</h5>
+        <textarea name="text" ([ngModel])="textSide2" maxlength="50" id="" cols="42" rows="4"></textarea>
+        <h5>Ou choisissez en un parmis la librairie</h5>
+      </div>
+    </div>
+    <div *ngIf="display === 'landscape'">
+      <h5>Vous pouvez selectionner un fond pour l'image</h5>
+      <div class="item-choices">
+        <div class="landscapes" [ngClass]="{'selected': landscape.selected === true, 'icon': landscape?.public_id === 'mugs/icons/empty'}" *ngFor="let landscape of listLandscapes; let i = index">
+            <img class="landscape-bg" 
+            [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614616342/' + landscape?.public_id + '.png'" 
+            (click)="landscape?.public_id === 'mugs/icons/empty' ? changeBg(landscape, true) : changeBg(landscape)" alt="">
+        </div>
+      </div>
+    </div>
+    <div *ngIf="display === 'character'">
+      <div class="delete-charac" (click)="delete(currentChar)">X Supprimer ce personnage</div>
+      <div class="general-infos row">
+        <div class="input-name">
+          <label class="label" for="Nom">Nom</label>
+          <input type="text" name="Nom" id="Nom" [(ngModel)]="currentChar.name">
+        </div>
+        <div class="gender">
+          <span class="label">Genre</span>
+          <div class="gender-choices choices">
+            <div class="choice" (click)="changeGender('female')" [ngClass]="{'selected': currentChar.gender === 'female'}">
+              <img src="https://res.cloudinary.com/deck4daxl/image/upload/v1614616677/mugs/icons/female.png" alt="">
+            </div>
+            <div class="choice" (click)="changeGender('male')" [ngClass]="{'selected': currentChar.gender === 'male'}">
+              <img src="https://res.cloudinary.com/deck4daxl/image/upload/v1614616677/mugs/icons/male.png" alt="">
+            </div>
+            <div class="choice" (click)="changeGender('animal')" [ngClass]="{'selected': currentChar.gender === 'animal'}">
+              <img src="https://res.cloudinary.com/deck4daxl/image/upload/v1614616677/mugs/icons/animal.png" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="position">
+          <span class="label">Position</span>
+          <div class="position-choices choices">
+            <div class="choice" (click)="changePosition('1')" [ngClass]="{'selected': currentChar.position === '1'}">
+              <img src="https://res.cloudinary.com/deck4daxl/image/upload/v1614616342/mugs/icons/silhouette-1.png" alt="">
+            </div>
+            <div class="choice" (click)="changePosition('2')" [ngClass]="{'selected': currentChar.position === '2'}">
+              <img src="https://res.cloudinary.com/deck4daxl/image/upload/v1614616342/mugs/icons/silhouette-2.png" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="scrollable">
+        <div class="skin-infos row">
+          <span class="label">Couleur de peau</span>
+          <div class="colors">
+            <div class="color" *ngFor="let item of listSkins" 
+            [ngStyle]="{'background-color': item.color}" 
+            [ngClass]="{'selected': item.name === currentChar.skinColor}"
+            (click)="changeSkin(item)"></div>
+          </div>
+        </div>
+        <div class="hairs-colors row">
+          <span class="label">Couleur de cheuveux</span>
+          <div class="colors">
+            <div class="color" 
+            *ngFor="let item of listHairColors" 
+            [ngStyle]="{'background-color': item.color}" 
+            [ngClass]="{'selected': item.name === currentChar.hairColor}"
+            (click)="changeHairColor(item)"></div>
+          </div>
+        </div>
+        <div class="hairs-style row">
+          <span class="label">Coupe de cheuveux</span>
+          <div class="colors">
+            <div class="img-choice" 
+            *ngFor="let item of filterItemsOfHairs()" 
+            [ngClass]="{'selected': item.public_id.includes(currentChar.hairStyle)}"
+            (click)="changeHairStyle(item)">
+                <img *ngIf="item.display === true" [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614616342/' + item.public_id" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="shirt-style row">
+          <span class="label">Haut</span>
+          <div class="colors">
+            <div class="img-choice" 
+            *ngFor="let item of filterItemsOfShirt()" 
+            [ngClass]="{'selected': item.name === currentChar.shirt}"
+            (click)="changeShirt(item)">
+                <img *ngIf="item.display === true" [src]="item.public_id" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="shirt-color row">
+          <span class="label">Couleur du haut</span>
+          <div class="colors">
+            <div class="img-choice pattern" 
+            *ngFor="let item of listShirtColors" 
+            [ngStyle]="{'background-image': 'url(' + item.color + ')'}" 
+            [ngClass]="{'selected': item.color === currentChar.shirtColor}"
+            (click)="changeShirtColor(item)">
+                <!-- <img  [src]="item.color" alt=""> -->
+            </div>
+          </div>
+        </div>
+        <div class="pant-style row">
+          <span class="label">Pantalon</span>
+          <div class="colors">
+            <div class="img-choice pant" 
+            *ngFor="let item of listPants" 
+            [ngClass]="{'selected': item.public_id.includes(currentChar.pant)}"
+            (click)="changePant(item)">
+                <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614616342/' + item.public_id" alt="">
+            </div>
+          </div>
+        </div>
+        <div class="access-style row">
+          <span class="label">Chapeau</span>
+          <div class="colors">
+            <div class="img-choice" 
+            [ngClass]="{'selected': currentChar.access === 'empty'}"
+            (click)="changeAccess('empty')">
+                <img src="https://res.cloudinary.com/deck4daxl/image/upload/v1614616342/mugs/icons/empty.png" alt="">
+            </div>
+            <div class="img-choice" 
+            *ngFor="let item of listAccess" 
+            [ngClass]="{'selected': item.public_id.includes(currentChar.access)}"
+            (click)="changeAccess(item)">
+                <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614616342/' + item.public_id" alt="">
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

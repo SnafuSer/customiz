@@ -1,4 +1,11 @@
 /* You can add global styles to this file, and also import other style files */
 
-html, body { height: 100%; }
+html, body { height: 100%; background-color:#FAFAFA}
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+@font-face {
+    font-family: "Dancing";
+    src: url("/assets/dancing/DancingScript-Medium.ttf") format("truetype"),
+    url("/assets/dancing/DancingScript-Regular.ttf") format("truetype"),
+    url("/assets/dancing/DancingScript-SemiBold.ttf") format("truetype"),
+    url("/assets/dancing/DancingScript-Bold.ttf") format("truetype"),
+}
