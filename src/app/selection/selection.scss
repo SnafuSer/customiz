@@ -228,6 +228,8 @@ h5 {
 .text-display  {
     overflow: scroll;    
     height: calc(520px - 75px);
+    display: flex;
+    flex-direction: column;
     h5 {
         margin: 16px 0 8px;
     }
@@ -246,4 +248,18 @@ h5 {
             border-bottom: 3px solid #B446FE !important;
         }
     }
+}
+
+.btn-cart {
+    margin: 8px 0 16px auto;
+    background-color: #141414;
+    border: 0px;
+    line-height: 34px;
+    padding: 0 24px;
+    color: white;
+    font-family: arial;
+    font-size: 16px;
+    border-radius: 10px;
+    cursor: pointer;
+    z-index: 9;
 }

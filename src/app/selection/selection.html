@@ -49,7 +49,8 @@
       </div>
       <div class="text-display" *ngIf="tabSide === 'side2'">
         <h5>Laissez un texte si vous le souhaitez (max 50 charactères)</h5>
-        <textarea name="text" ([ngModel])="textSide2" maxlength="50" id="" cols="42" rows="4"></textarea>
+        <textarea name="text" [(ngModel)]="textSide2" maxlength="280" id="" cols="42" rows="4"></textarea>
+        <button class="btn-cart" (click)="changeTextSide2()">Changer</button>
         <h5>Ou choisissez en un parmis la librairie</h5>
       </div>
     </div>

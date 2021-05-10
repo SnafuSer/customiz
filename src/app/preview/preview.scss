@@ -172,6 +172,27 @@
     color: #454545;
     mix-blend-mode: multiply;
 }
+.textTitle2 {
+    font-family: "Dancing";
+    font-weight: bolder;
+    font-size: 35px;
+    position: absolute;
+    top: 125px;
+    text-align: center;
+    margin-left: 195px;
+    width: 250px;
+    text-align: center;
+    color: #454545;
+    mix-blend-mode: multiply;
+    /* width: auto; */
+    text-overflow: ellipsis;
+    white-space: break-spaces;
+    overflow: hidden;
+    top: 50%;
+    transform: translateY(calc(-50% + 25px));
+    line-height: 70px;
+    max-height: 340px;
+}
 
 .btn-cart {
     margin: auto 16px 8px auto;

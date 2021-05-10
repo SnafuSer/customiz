@@ -231,6 +231,29 @@ export class Selections {
     };
     this.appComponent.textTitle = item.title
   }
+  changeTextSide2() {
+    this.appComponent.textSide2 = this.textSide2
+    console.log('this.appComponent.textSide2', this.appComponent.textSide2)
+    setTimeout(() => {
+      
+      this.checkOverflow()
+    }, 20);
+  }
+  checkOverflow() {
+    var els = document.getElementById('textTitle2');
+    if (els.offsetHeight < els.scrollHeight ||
+      els.offsetWidth < els.scrollWidth) {
+        var fontSize = parseInt(window.getComputedStyle(els, null).getPropertyValue('font-size'));
+        var lineHeight = parseInt(window.getComputedStyle(els, null).getPropertyValue('line-height'));
+        let x = fontSize - 1
+        let y = lineHeight - 2
+        els.style.fontSize = x + "px"
+        els.style.lineHeight = y + "px"
+        this.checkOverflow()
+      } else {
+      return false;
+    }
+  }
   // Get library img
   getCloudinary(src) {
     this.cloudinaryService.getCloudinary(src).subscribe(
@@ -386,13 +409,8 @@ export class Selections {
     this.currentChar.hairStyle = item.name
   }
   changeShirt(item) {
-    console.log('change', item)
     this.currentChar.shirt = item.name   
-    console.log('this.currentChar change shirt', this.currentChar)
-    console.log('this.currentChar  appComp', this.appComponent.currentChar)
-    this.changeShirtColor(this.currentChar.shirtColor)
-    // let svg = document.getElementById('salut' + this.currentChar.number)
-    // svg.getElementsByTagName('image').item(0).setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.currentChar.color)
+    // this.changeShirtColor(this.currentChar.shirtColor)
   }
   changePant(item) {
     this.currentChar.pant = item.name

@@ -36,7 +36,6 @@ export class Preview {
     this.bgImage = this.appComponent.choiceLanscape
     this.listCharacters = this.appComponent.listCharacters
     this.tabSide = this.appComponent.tabSide
-    console.log('this.listCharacters', this.listCharacters)
   }
   getCloudinary(src) {
     src = 'landscape'
@@ -64,16 +63,13 @@ export class Preview {
         svg.getElementsByTagName('image').item(0).setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.appComponent.listCharacters[parseInt(parent.id)].shirtColor.color)    
       }, 50);
     } else {
-      setTimeout(() => {
-        console.log('this.appComponent.listCharacters[parseInt(parent.id)] 2', this.appComponent.listCharacters[parseInt(parent.id)])
-        svg.getElementsByTagName('pattern').item(0).id = "salut" + parent.id
-        let st0 = svg.getElementsByClassName('st0')
-        for(var i=0, len=st0.length; i<len; i++)
-        {
-          st0[i].style["fill"] = 'url("#salut' + parent.id + '")';
-        }
-        svg.getElementsByTagName('image').item(0).setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.appComponent.listCharacters[parseInt(parent.id)].shirtColor.color)
-      }, 150);
+      svg.getElementsByTagName('pattern').item(0).id = "salut" + parent.id
+      let st0 = svg.getElementsByClassName('st0')
+      for(var i=0, len=st0.length; i<len; i++)
+      {
+        st0[i].style["fill"] = 'url("#salut' + parent.id + '")';
+      }
+      svg.getElementsByTagName('image').item(0).setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.appComponent.listCharacters[parseInt(parent.id)].shirtColor.color)
     }
     return svg;
   }

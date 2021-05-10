@@ -52,7 +52,8 @@ export class AppComponent {
           }
         ],
         landscape: {img: "https://res.cloudinary.com/deck4daxl/image/upload/v1614616342/mugs/paysage/mountain.png"},
-        textTitle: "Love"
+        textTitle: "Love",
+        textSide2: "Aloha que tal"
       }
       this.createhorsLigne() 
     }
@@ -61,7 +62,7 @@ export class AppComponent {
     public loading: boolean = true
     public loadingText: string = "Chargement de la librairie en cours..."
     public textTitle: string
-    public textSide2: string
+    public textSide2: string 
     public choiceCharacter: any
     public choiceAnimal: any
     public choiceLanscape: any
@@ -90,11 +91,15 @@ export class AppComponent {
         this.display = true
         this.loading = false
       }
+      if(event.data === "Item added") {
+        this.loading = false
+      }
     }
     createhorsLigne() {
       this.listCharacters = this.options.characters
       this.choiceLanscape = this.options.landscape
       this.textTitle = this.options.textTitle
+      this.textSide2 = this.options.textSide2
       this.currentChar = this.listCharacters[0]
       this.display = true
       this.loading = false
@@ -163,6 +168,7 @@ export class AppComponent {
       this.loadingText = "Création du design en cours..."
       this.loading = true
       let test = {
+        textSide2: this.textSide2,
         textTitle: this.textTitle,
         landscape: this.choiceLanscape,
         characters: this.listCharacters
