@@ -52,6 +52,7 @@ export class Preview {
   public myFunc = this.handler.bind(this);
 
   handler(svg, parent) {
+    console.log('this.appComponent.listCharacters[parseInt(parent.id)] 1', this.appComponent.listCharacters[parseInt(parent.id)])
     if (isNaN(parseInt(parent.id))) {
       setTimeout(() => {
         svg.getElementsByTagName('pattern').item(0).id = "salut" + parent.id
@@ -63,13 +64,16 @@ export class Preview {
         svg.getElementsByTagName('image').item(0).setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.appComponent.listCharacters[parseInt(parent.id)].shirtColor.color)    
       }, 50);
     } else {
-      svg.getElementsByTagName('pattern').item(0).id = "salut" + parent.id
-      let st0 = svg.getElementsByClassName('st0')
-      for(var i=0, len=st0.length; i<len; i++)
-      {
+      setTimeout(() => {
+        console.log('this.appComponent.listCharacters[parseInt(parent.id)] 2', this.appComponent.listCharacters[parseInt(parent.id)])
+        svg.getElementsByTagName('pattern').item(0).id = "salut" + parent.id
+        let st0 = svg.getElementsByClassName('st0')
+        for(var i=0, len=st0.length; i<len; i++)
+        {
           st0[i].style["fill"] = 'url("#salut' + parent.id + '")';
-      }
-      svg.getElementsByTagName('image').item(0).setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.appComponent.listCharacters[parseInt(parent.id)].shirtColor.color)
+        }
+        svg.getElementsByTagName('image').item(0).setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.appComponent.listCharacters[parseInt(parent.id)].shirtColor.color)
+      }, 150);
     }
     return svg;
   }

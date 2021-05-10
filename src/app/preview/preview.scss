@@ -28,7 +28,7 @@
 .container-charac {
     &:nth-child(2n+0) {
         .name-charac {
-            bottom: -60px;
+            bottom: -45px;
         }
     }
     position: absolute;
@@ -57,7 +57,7 @@
     }
     &.length3 {
         height: 160px;
-        top: 215px;
+        top: 255px;
         &::ng-deep {
             svg {
                 width: 160px;
@@ -71,7 +71,7 @@
         &.character1 {
             margin-left: 85px;
             z-index: 8;
-            top: 220px;
+            top: 260px;
         }
         &.character2 {
             margin-left: 165px;
@@ -80,7 +80,7 @@
     }
     &.length4 {
         height: 130px;
-        top: 245px;
+        top: 275px;
         &::ng-deep {
             svg {
                 width: 130px;
@@ -94,7 +94,7 @@
         &.character1 {
             margin-left: 65px;
             z-index: 8;
-            top: 250px;
+            top: 280px;
         }
         &.character2 {
             margin-left: 130px;
@@ -103,7 +103,7 @@
         &.character3 {
             margin-left: 200px;
             z-index: 6;
-            top: 250px;
+            top: 280px;
         }
         .name-charac {
             margin-left: 65px;

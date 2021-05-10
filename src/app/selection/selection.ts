@@ -386,7 +386,13 @@ export class Selections {
     this.currentChar.hairStyle = item.name
   }
   changeShirt(item) {
-    this.currentChar.shirt = item.name
+    console.log('change', item)
+    this.currentChar.shirt = item.name   
+    console.log('this.currentChar change shirt', this.currentChar)
+    console.log('this.currentChar  appComp', this.appComponent.currentChar)
+    this.changeShirtColor(this.currentChar.shirtColor)
+    // let svg = document.getElementById('salut' + this.currentChar.number)
+    // svg.getElementsByTagName('image').item(0).setAttributeNS('http://www.w3.org/1999/xlink', 'xlink:href', this.currentChar.color)
   }
   changePant(item) {
     this.currentChar.pant = item.name

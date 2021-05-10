@@ -10,7 +10,7 @@ import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpClientModule } from '@angular/common/http';
 import { CloudinaryModule } from '@cloudinary/angular-5.x';
-import  * as CloudinaryCore from 'cloudinary-core';
+import { Cloudinary } from 'cloudinary-core';
 
 // ***** Material *****
 import {
@@ -43,7 +43,7 @@ import {
 
 // ***** Pipe *****
 export const cloudinary = {
-  Cloudinary: CloudinaryCore
+  Cloudinary: Cloudinary
 };
 @NgModule({
   declarations: [
@@ -72,7 +72,7 @@ export const cloudinary = {
     MatGridListModule,
     MatToolbarModule,
     MatIconModule,
-    CloudinaryModule.forRoot(CloudinaryCore, { cloud_name: 'deck4daxl'}),
+    CloudinaryModule.forRoot(cloudinary, { cloud_name: 'deck4daxl'}),
 
   ],
   providers: [

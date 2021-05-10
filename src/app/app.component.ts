@@ -168,7 +168,7 @@ export class AppComponent {
         characters: this.listCharacters
       }
       let message = JSON.stringify(test) 
-      console.log('ok')
+      console.log('ok', test)
       window.parent.postMessage({export: message, characters: this.listCharacters.length, textTitle: this.textTitle}, '*');
     }
 }
