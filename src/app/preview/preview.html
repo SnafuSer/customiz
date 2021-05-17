@@ -18,6 +18,9 @@
 
             <span class="name-charac">{{character.name}}</span>
         </div>
+        <div class="zoomIn">
+            <img class="icon" (click)="openModal = true" src="https://res.cloudinary.com/deck4daxl/image/upload/v1621269671/mugs/icons/zoomIn.png" alt="">
+        </div>
     </div>
     <!-- https://res.cloudinary.com/deck4daxl/image/upload/v1615539532/mugs/male/silhouette/seat/male2-c4.png -->
     <div class="container-preview" *ngIf="appComponent.tabSide === 'side2'">
@@ -30,9 +33,8 @@
     <!-- <img src="../assets/svg/shirt.svg" alt=""> -->
     <button class="btn-cart" (click)="export()">Ajouter au panier</button>
 </div>
-<button class="btn-cart" (click)="preview()">Canvas</button>
 
-<div class="overlay">
+<div class="overlay" *ngIf="openModal === true">
     <div class="modal">
         <div class="container-preview modalView" id="container-preview" *ngIf="appComponent.tabSide === 'side1'">
             <img class="bg-mug" src="https://res.cloudinary.com/deck4daxl/image/upload/v1614616725/mugs/bg-mug/mug.png" alt="">
@@ -62,7 +64,7 @@
                 <img *ngIf="appComponent?.textSide2.background" [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/'+ appComponent?.textSide2.background" alt="">
             </div>
         </div>
-        <div class="close">
+        <div class="close" (click)="openModal = false">
             X
         </div>
     </div>

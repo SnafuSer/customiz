@@ -24,6 +24,7 @@ export class Preview {
   public choiceAnimal: any
   public choiceLanscape: any
   public tabSide: any
+  public openModal: boolean = false
 
   // @ViewChildren('myCanvas')
   @ViewChildren("myCanvas") canvaslist: QueryList<any>
