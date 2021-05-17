@@ -53,7 +53,11 @@ export class AppComponent {
         ],
         landscape: {img: "https://res.cloudinary.com/deck4daxl/image/upload/v1614616342/mugs/paysage/mountain.png"},
         textTitle: "Love",
-        textSide2: "Aloha que tal"
+        textSide2: { text: "Aloha que tal", 
+                     size: "35px",
+                     lineHeight: "75px",
+                     background: ""
+                   }
       }
       this.createhorsLigne() 
     }
@@ -62,7 +66,7 @@ export class AppComponent {
     public loading: boolean = true
     public loadingText: string = "Chargement de la librairie en cours..."
     public textTitle: string
-    public textSide2: string 
+    public textSide2: any 
     public choiceCharacter: any
     public choiceAnimal: any
     public choiceLanscape: any

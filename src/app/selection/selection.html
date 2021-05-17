@@ -48,10 +48,17 @@
         </div>
       </div>
       <div class="text-display" *ngIf="tabSide === 'side2'">
-        <h5>Laissez un texte si vous le souhaitez (max 50 charactères)</h5>
-        <textarea name="text" [(ngModel)]="textSide2" maxlength="280" id="" cols="42" rows="4"></textarea>
-        <button class="btn-cart" (click)="changeTextSide2()">Changer</button>
+        <h5>Laissez un texte si vous le souhaitez (max 200 charactères)</h5>
+        <textarea name="text" [(ngModel)]="textSide2.text" (ngModelChange)="changeTextSide2()" maxlength="200" id="" cols="42" rows="4"></textarea>
+        <!-- <button class="btn-cart" (click)="changeTextSide2()">Changer</button> -->
         <h5>Ou choisissez en un parmis la librairie</h5>
+        <div class="text2-lib">
+          <div class="item-lib" *ngFor="let quote of listQuotes; let i = index" (click)="changeTextSide2(quote)">
+            <img class="landscape-bg" 
+            [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614616342/' + quote?.public_id + '.png'" 
+            alt="">
+          </div>
+        </div>
       </div>
     </div>
     <div *ngIf="display === 'landscape'">
@@ -163,7 +170,7 @@
           </div>
         </div>
         <div class="access-style row">
-          <span class="label">Chapeau</span>
+          <span class="label">Accessoire</span>
           <div class="colors">
             <div class="img-choice" 
             [ngClass]="{'selected': currentChar.access === 'empty'}"

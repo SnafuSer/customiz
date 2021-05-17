@@ -19,6 +19,7 @@ export class Selections {
 
   public bgImage: any
   public currentChar: any
+  public listQuotes : Array<any>
   public listLandscapes : Array<any> = [{
     public_id: "mugs/icons/empty"
   }]
@@ -102,6 +103,14 @@ export class Selections {
     },
     {
       name: "c11", 
+      color: "https://res.cloudinary.com/deck4daxl/image/upload/v1620748862/mugs/male/clothes/seat/shirt/liberty_m5gh0e.png"
+    },
+    {
+      name: "c12", 
+      color: "https://res.cloudinary.com/deck4daxl/image/upload/v1620748861/mugs/male/clothes/seat/shirt/flowers_o0zhir.png"
+    },
+    {
+      name: "c13", 
       color: "https://res.cloudinary.com/deck4daxl/image/upload/v1620146176/mugs/male/clothes/seat/shirt/milit_er8tm7.png"
     },
   ]
@@ -120,7 +129,7 @@ export class Selections {
     },
   ]
   public tabSide: string
-  public textSide2: string
+  public textSide2: any
   public textTitle: Array<any> = [
     {
     title: "Sisters"
@@ -155,6 +164,7 @@ export class Selections {
   ]
   ngOnInit() {
     this.getCloudinary('landscape')
+    this.getCloudinary('quotes')
     this.getCloudinary('listMan')
     this.tabSide = this.appComponent.tabSide
     this.listCharacters = this.appComponent.listCharacters
@@ -231,13 +241,17 @@ export class Selections {
     };
     this.appComponent.textTitle = item.title
   }
-  changeTextSide2() {
-    this.appComponent.textSide2 = this.textSide2
-    console.log('this.appComponent.textSide2', this.appComponent.textSide2)
-    setTimeout(() => {
-      
-      this.checkOverflow()
-    }, 20);
+  changeTextSide2(lib?) {
+    if(lib) {
+      this.textSide2.text = ""
+      this.textSide2.background = lib.public_id
+    } else {
+      this.textSide2.background = ""
+      this.appComponent.textSide2 = this.textSide2
+      setTimeout(() => {
+        this.checkOverflow()
+      }, 20);
+    }
   }
   checkOverflow() {
     var els = document.getElementById('textTitle2');
@@ -249,6 +263,8 @@ export class Selections {
         let y = lineHeight - 2
         els.style.fontSize = x + "px"
         els.style.lineHeight = y + "px"
+        this.textSide2.size = x + "px"
+        this.textSide2.lineHeight = y + "px"
         this.checkOverflow()
       } else {
       return false;
@@ -268,6 +284,10 @@ export class Selections {
             break;
           case 'landscape':
             this.listLandscapes = this.listLandscapes.concat(this.cloudinaryResponse)
+            break;
+          case 'quotes':
+            this.listQuotes = this.cloudinaryResponse
+            console.log('this.listQuotes', this.listQuotes)
             break;
         
           default:

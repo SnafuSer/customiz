@@ -36,6 +36,7 @@ export class Preview {
     this.bgImage = this.appComponent.choiceLanscape
     this.listCharacters = this.appComponent.listCharacters
     this.tabSide = this.appComponent.tabSide
+    console.log('appComponent?.textSide2.fontSize   ddd', this.appComponent.textSide2.size)
   }
   getCloudinary(src) {
     src = 'landscape'
@@ -87,5 +88,7 @@ export class Preview {
   export() {
     this.appComponent.export()
   }
- 
+  preview() {
+    
+  }
 }

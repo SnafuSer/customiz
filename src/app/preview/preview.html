@@ -22,9 +22,48 @@
     <!-- https://res.cloudinary.com/deck4daxl/image/upload/v1615539532/mugs/male/silhouette/seat/male2-c4.png -->
     <div class="container-preview" *ngIf="appComponent.tabSide === 'side2'">
         <img class="bg-mug mirror" src="https://res.cloudinary.com/deck4daxl/image/upload/v1614616725/mugs/bg-mug/mug.png" alt="">
-        <div id="textTitle2" class="textTitle2">{{ appComponent?.textSide2 }}</div>
+        <div id="textTitle2" [ngStyle]="{fontSize: appComponent?.textSide2.size, lineHeight: appComponent?.textSide2.lineHeight}" class="textTitle2">
+            <span *ngIf="appComponent?.textSide2.text.length > 0">{{ appComponent?.textSide2.text }}</span>
+            <img *ngIf="appComponent?.textSide2.background" [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/'+ appComponent?.textSide2.background" alt="">
+        </div>
     </div>
     <!-- <img src="../assets/svg/shirt.svg" alt=""> -->
     <button class="btn-cart" (click)="export()">Ajouter au panier</button>
 </div>
-<!-- <button class="btn-cart" (click)="getImage()">Canvas</button> -->
+<button class="btn-cart" (click)="preview()">Canvas</button>
+
+<div class="overlay">
+    <div class="modal">
+        <div class="container-preview modalView" id="container-preview" *ngIf="appComponent.tabSide === 'side1'">
+            <img class="bg-mug" src="https://res.cloudinary.com/deck4daxl/image/upload/v1614616725/mugs/bg-mug/mug.png" alt="">
+            <img class="bg-image" [src]="bgImage?.img" alt="">
+            <div class="textTitle">{{ appComponent?.textTitle }}</div>
+            <!-- <div [class]="'container-charac ' + character.type + i +' length' + listCharacters.length" *ngFor="let character of listCharacters; let i = index" (click)="setActiveTab(i)"> -->
+            <div [class]="'container-charac ' + character?.type + i +' length' + listCharacters?.length" [ngClass]="{'front': character?.position === '2'}" *ngFor="let character of listCharacters; let i = index">
+                <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/access/' + character?.access + '.png'" alt="">
+    
+                <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1615539532/mugs/'+ character?.gender +'/silhouette/seat/' + character?.gender + character?.position + '-' + character?.skinColor + '.png'" alt="">
+                <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/pant/' + character?.pant + '.png'" alt="">
+                <!-- <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/shirt/shirt' + character?.position + '-' + character?.shirt + '.png'" alt=""> -->
+                <!-- mix-blend-mode: multiply; -->
+                <!-- <canvas #myCanvas width="170" height="170" id="barCanvaslist{{i}}"></canvas> -->
+                <div class="svg" [id]="i" [inlineSVG]="'../assets/svg/' + character?.gender + '/' + character?.shirt + character?.position + '.svg'" [onSVGLoaded]="myFunc"></div>
+    
+                <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/hair/' + character?.hairStyle + '-' + character?.hairColor + '.png'" alt="">
+    
+                <span class="name-charac">{{character.name}}</span>
+            </div>
+        </div>
+        <!-- https://res.cloudinary.com/deck4daxl/image/upload/v1615539532/mugs/male/silhouette/seat/male2-c4.png -->
+        <div class="container-preview modal" *ngIf="appComponent.tabSide === 'side2'">
+            <img class="bg-mug mirror" src="https://res.cloudinary.com/deck4daxl/image/upload/v1614616725/mugs/bg-mug/mug.png" alt="">
+            <div id="textTitle2" [ngStyle]="{fontSize: appComponent?.textSide2.size, lineHeight: appComponent?.textSide2.lineHeight}" class="textTitle2">
+                <span *ngIf="appComponent?.textSide2.text.length > 0">{{ appComponent?.textSide2.text }}</span>
+                <img *ngIf="appComponent?.textSide2.background" [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/'+ appComponent?.textSide2.background" alt="">
+            </div>
+        </div>
+        <div class="close">
+            X
+        </div>
+    </div>
+</div>
