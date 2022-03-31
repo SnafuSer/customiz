@@ -3,19 +3,24 @@
         <img class="bg-mug" src="https://res.cloudinary.com/deck4daxl/image/upload/v1614616725/mugs/bg-mug/mug.png" alt="">
         <img class="bg-image" [src]="bgImage?.img" alt="">
         <div class="textTitle">{{ appComponent?.textTitle }}</div>
-        <!-- <div [class]="'container-charac ' + character.type + i +' length' + listCharacters.length" *ngFor="let character of listCharacters; let i = index" (click)="setActiveTab(i)"> -->
-        <div [class]="'container-charac ' + character?.type + i +' length' + listCharacters?.length" [ngClass]="{'front': character?.position === '2'}" *ngFor="let character of listCharacters; let i = index">
-            <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/access/' + character?.access + '.png'" alt="">
-
-            <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1615539532/mugs/'+ character?.gender +'/silhouette/seat/' + character?.gender + character?.position + '-' + character?.skinColor + '.png'" alt="">
-            <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/pant/' + character?.pant + '.png'" alt="">
-            <!-- <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/shirt/shirt' + character?.position + '-' + character?.shirt + '.png'" alt=""> -->
-            <!-- mix-blend-mode: multiply; -->
-            <!-- <canvas #myCanvas width="170" height="170" id="barCanvaslist{{i}}"></canvas> -->
-            <div class="svg" [id]="i" [inlineSVG]="'../assets/svg/' + character?.gender + '/' + character?.shirt + character?.position + '.svg'" [onSVGLoaded]="myFunc"></div>
-
-            <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/hair/' + character?.hairStyle + '-' + character?.hairColor + '.png'" alt="">
-
+        
+        <!-- <div [class]="'container-charac ' + character?.type + i +' length' + listCharacters?.length" [ngClass]="{'front': character?.position === '2'}" *ngFor="let character of listCharacters; let i = index"> -->
+        <div [class]="'container-charac character' + i +' length' + listCharacters?.length" [ngClass]="{'front': character?.position === '2'}" *ngFor="let character of listCharacters; let i = index">
+            <div *ngIf="character.type === 'character'; else elseBlock">
+                <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/access/' + character?.access + '.png'" alt="">
+    
+                <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1615539532/mugs/'+ character?.gender +'/silhouette/seat/' + character?.gender + character?.position + '-' + character?.skinColor + '.png'" alt="">
+                <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/pant/' + character?.pant + '.png'" alt="">
+                <!-- <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/shirt/shirt' + character?.position + '-' + character?.shirt + '.png'" alt=""> -->
+                <!-- mix-blend-mode: multiply; -->
+                <!-- <canvas #myCanvas width="170" height="170" id="barCanvaslist{{i}}"></canvas> -->
+                <div class="svg" [id]="i" [inlineSVG]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/' + character?.gender + '/clothes/seat/shirt/' + character?.shirt + character?.position + '.svg'" [onSVGLoaded]="myFunc"></div>
+    
+                <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/hair/' + character?.hairStyle + '-' + character?.hairColor + '.png'" alt="">
+            </div>
+            <ng-template #elseBlock>
+                <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/pets/seat/'+ character?.gender +'.png'" alt="">
+            </ng-template>
             <span class="name-charac">{{character.name}}</span>
         </div>
         <div class="zoomIn">
@@ -41,18 +46,22 @@
             <img class="bg-image" [src]="bgImage?.img" alt="">
             <div class="textTitle">{{ appComponent?.textTitle }}</div>
             <!-- <div [class]="'container-charac ' + character.type + i +' length' + listCharacters.length" *ngFor="let character of listCharacters; let i = index" (click)="setActiveTab(i)"> -->
-            <div [class]="'container-charac ' + character?.type + i +' length' + listCharacters?.length" [ngClass]="{'front': character?.position === '2'}" *ngFor="let character of listCharacters; let i = index">
-                <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/access/' + character?.access + '.png'" alt="">
-    
-                <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1615539532/mugs/'+ character?.gender +'/silhouette/seat/' + character?.gender + character?.position + '-' + character?.skinColor + '.png'" alt="">
-                <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/pant/' + character?.pant + '.png'" alt="">
-                <!-- <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/shirt/shirt' + character?.position + '-' + character?.shirt + '.png'" alt=""> -->
-                <!-- mix-blend-mode: multiply; -->
-                <!-- <canvas #myCanvas width="170" height="170" id="barCanvaslist{{i}}"></canvas> -->
-                <div class="svg" [id]="i" [inlineSVG]="'../assets/svg/' + character?.gender + '/' + character?.shirt + character?.position + '.svg'" [onSVGLoaded]="myFunc"></div>
-    
-                <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/hair/' + character?.hairStyle + '-' + character?.hairColor + '.png'" alt="">
-    
+            <div [class]="'container-charac character' + i +' length' + listCharacters?.length" [ngClass]="{'front': character?.position === '2'}" *ngFor="let character of listCharacters; let i = index">
+                <div *ngIf="character.type === 'character'; else elseBlock">
+                    <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/access/' + character?.access + '.png'" alt="">
+        
+                    <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1615539532/mugs/'+ character?.gender +'/silhouette/seat/' + character?.gender + character?.position + '-' + character?.skinColor + '.png'" alt="">
+                    <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/pant/' + character?.pant + '.png'" alt="">
+                    <!-- <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/shirt/shirt' + character?.position + '-' + character?.shirt + '.png'" alt=""> -->
+                    <!-- mix-blend-mode: multiply; -->
+                    <!-- <canvas #myCanvas width="170" height="170" id="barCanvaslist{{i}}"></canvas> -->
+                    <div class="svg" [id]="i" [inlineSVG]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/' + character?.gender + '/clothes/seat/shirt/' + character?.shirt + character?.position + '.svg'" [onSVGLoaded]="myFunc"></div>
+        
+                    <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/'+ character?.gender +'/clothes/seat/hair/' + character?.hairStyle + '-' + character?.hairColor + '.png'" alt="">
+                </div>
+                <ng-template #elseBlock>
+                    <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614611242/mugs/pets/seat/'+ character?.gender +'.png'" alt="">
+                </ng-template>
                 <span class="name-charac">{{character.name}}</span>
             </div>
         </div>

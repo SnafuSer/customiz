@@ -17,8 +17,10 @@ export class Selections {
     public cloudinaryService: CloudinaryService,) {
   }
 
+  public isPets: boolean
   public bgImage: any
   public currentChar: any
+  public listPets : Array<any> = []
   public listQuotes : Array<any>
   public listLandscapes : Array<any> = [{
     public_id: "mugs/icons/empty"
@@ -175,12 +177,12 @@ export class Selections {
   }
   addCharacter() {
     this.appComponent.addCharacter()
-    this.setActiveTab(this.appComponent.listCharacters.length - 1, 'characters')
+    this.setActiveTab(this.appComponent.listCharacters.length - 1, 'character')
   }
   // Set tabs
-  setActiveTab(item, array) {
+  setActiveTab(item, type) {
     this.changeSide('side1')
-    if (array === 'characters') {
+    if (type === 'character' || type === 'animal') {
       this.display = 'character'
       for (let index = 0; index < this.tabs.length; index++) {
         this.tabs[index].selected = false
@@ -189,7 +191,7 @@ export class Selections {
         if (i === item) {
           this.listCharacters[item].selected = true; 
           this.currentChar = this.listCharacters[item]
-          this.changeGender(this.currentChar.gender)
+          this.changeGender(this.currentChar.gender, true)
           this.displayHairStyle(this.currentChar.hairColor)
           this.displayShirtStyle('shirt' + this.currentChar.position)
         }
@@ -274,6 +276,8 @@ export class Selections {
   getCloudinary(src) {
     this.cloudinaryService.getCloudinary(src).subscribe(
       (response) => {
+        this.isPets = false
+        this.listPets = []
         this.cloudinaryResponse = response.resources
         switch (src) {
           case 'listMan':
@@ -287,7 +291,16 @@ export class Selections {
             break;
           case 'quotes':
             this.listQuotes = this.cloudinaryResponse
-            console.log('this.listQuotes', this.listQuotes)
+            break;
+          case 'listPets':
+            this.isPets = true
+            this.cloudinaryResponse.forEach(element => {
+                var mySubString = element.public_id.substring(
+                  element.public_id.lastIndexOf("/") + 1
+                );
+                element.name = mySubString
+                this.listPets.push(element)              
+            });
             break;
         
           default:
@@ -313,7 +326,7 @@ export class Selections {
         this.listHairs.push(element)
       }
       if (element.public_id.includes("shirt")) {
-        if(this.currentChar.sexe === 'homme') {
+        if(this.currentChar.gender === 'male') {
           this.listShirt = [
             {
               public_id: "/assets/list/man/shirt1.svg",
@@ -337,7 +350,7 @@ export class Selections {
             },
           ]
         }
-        if(this.currentChar.sexe === 'femme') {
+        if(this.currentChar.gender === 'female') {
           this.listShirt = [
             {
               public_id: "/assets/list/female/cropTop.svg",
@@ -391,27 +404,58 @@ export class Selections {
   }
 
   // change colors and style functions
-  changeGender(item) {
+  changeGender(item, tabs?) {
     this.currentChar.gender = item
     switch (item) {
       case 'male':
-        this.currentChar.sexe = 'homme'
+        if (!tabs) {
+          this.currentChar.type = "character"
+          this.currentChar.gender = 'male'
+          this.currentChar.shirt = 'tshirt'
+          this.currentChar.hairStyle = 'hair1'
+          this.currentChar.pant = 'pant1'
+          this.currentChar.access = 'empty'
+        }
         this.getCloudinary('listMan')
         break;
-        case 'female':
-        this.currentChar.sexe = 'femme'
+      case 'female':
+        if (!tabs) {
+          this.currentChar.type = "character"
+          this.currentChar.gender = 'female'
+          this.currentChar.shirt = 'tshirt'
+          this.currentChar.hairStyle = 'hair1'
+          this.currentChar.pant = 'pant1'
+          this.currentChar.access = 'empty'
+        }
         this.getCloudinary('listFemale')
         break;
       case 'animal':
-        this.getCloudinary('listMan')
+        this.currentChar.type = "animal"
+        this.currentChar.gender = 'kingCharle1'
+        this.currentChar.shirt = ''
+        this.currentChar.hairStyle = ''
+        this.currentChar.pant = ''
+        this.currentChar.access = ''
+        this.getCloudinary('listPets')
         break;
     
       default:
         break;
     }
   }
+  changePet(item) {
+    this.currentChar.gender = item.name
+  }
   changePosition(item) {
     this.currentChar.position = item
+  }
+  public currentPosition : number = 1
+  changePositionMore() {
+    if (this.currentPosition === 4) {
+      this.currentPosition = 0
+    }
+    this.currentPosition += 1
+    this.currentChar.position = this.currentPosition
   }
   changeSkin(item) {
     this.currentChar.skinColor = item.name

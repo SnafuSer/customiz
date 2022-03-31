@@ -37,7 +37,6 @@ export class Preview {
     this.bgImage = this.appComponent.choiceLanscape
     this.listCharacters = this.appComponent.listCharacters
     this.tabSide = this.appComponent.tabSide
-    console.log('appComponent?.textSide2.fontSize   ddd', this.appComponent.textSide2.size)
   }
   getCloudinary(src) {
     src = 'landscape'
@@ -53,7 +52,6 @@ export class Preview {
   public myFunc = this.handler.bind(this);
 
   handler(svg, parent) {
-    console.log('this.appComponent.listCharacters[parseInt(parent.id)] 1', this.appComponent.listCharacters[parseInt(parent.id)])
     if (isNaN(parseInt(parent.id))) {
       setTimeout(() => {
         svg.getElementsByTagName('pattern').item(0).id = "salut" + parent.id

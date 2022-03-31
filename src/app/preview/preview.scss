@@ -28,11 +28,11 @@
 .container-charac {
     &:nth-child(2n+0) {
         .name-charac {
-            bottom: -45px;
+            // bottom: -35px;
         }
     }
     position: absolute;
-    top: 235px;
+    top: 205px;
     cursor: pointer;
     // &:hover {
     //     filter: brightness(1.2);
@@ -45,37 +45,42 @@
         position: absolute;
     }
     &.length2 {
-        height: 170px;
+        height: 200px;
         &.character0 {
-            margin-left: 50px;
+            margin-left: 30px;
             z-index: 9;
         }
         &.character1 {
-            margin-left: 120px;
+            margin-left: 115px;
+            // margin-left: 120px;
             z-index: 8;
         }
     }
     &.length3 {
-        height: 160px;
-        top: 255px;
+        height: 170px;
+        top: 225px;
         &::ng-deep {
             svg {
-                width: 160px;
+                width: 170px;
             }
         }
         &.character0 {
-            margin-left: 20px;
+            margin-left: 5px;
             // transform: scaleX(-1);
             z-index: 9;
         }
         &.character1 {
-            margin-left: 85px;
+            margin-left: 75px;
             z-index: 8;
-            top: 260px;
+            // top: 260px;
         }
         &.character2 {
-            margin-left: 165px;
+            margin-left: 155px;
             z-index: 7;
+        }
+        .name-charac {
+            margin-left: 95px;
+            font-size: 16px;
         }
     }
     &.length4 {
@@ -107,7 +112,7 @@
         }
         .name-charac {
             margin-left: 65px;
-            font-size: 16px;
+            font-size: 15px;
         }
     }
     &.length5 {
@@ -143,15 +148,15 @@
         }
         .name-charac {
             margin-left: 50px;
-            font-size: 15px;
+            font-size: 14px;
         }
     }
 
 }
 .name-charac {
     position: absolute;
-    bottom: -35px;
-    margin-left: 85px;
+    bottom: -25px;
+    margin-left: 110px;
     transform: translateX(-50%);
     font-family: "Dancing";
     font-size: 18px;
@@ -159,13 +164,14 @@
     text-align: center;
     color: #454545;
     mix-blend-mode: multiply;
+    text-shadow: 1px 0 0 #fff, -1px 0 0 #fff, 0 1px 0 #fff, 0 -1px 0 #fff, 1px 1px #fff, -1px -1px 0 #fff, 1px -1px 0 #fff, -1px 1px 0 #fff;
 }
 .textTitle {
     font-family: "Dancing";
     font-weight: bolder;
-    font-size: 35px;
+    font-size: 38px;
     position: absolute;
-    top: 125px;
+    top: 127px;
     margin-left: 39px;
     width: 290px;
     text-align: center;
@@ -215,7 +221,7 @@
     position: absolute;
     &::ng-deep {
         svg {
-            width: 170px;
+            width: 200px;
             .imageSvg {
                 content:url("https://res.cloudinary.com/deck4daxl/image/upload/v1618934770/mugs/male/clothes/seat/shirt/basicPlaid_hxqpdj.png");
             }

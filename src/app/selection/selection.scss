@@ -38,7 +38,7 @@ h5 {
             background-color: #E6E6E6;
         }
         &.selected {
-            border-left: 3px solid #B446FE;
+            border-left: 3px solid #141414;
             box-sizing: border-box;
             background-color: #FAFAFA;
         }
@@ -69,7 +69,7 @@ h5 {
             background-color: #E6E6E6;
         }
         &.selected {
-            border-bottom: 3px solid #B446FE;
+            border-bottom: 3px solid #141414;
             box-sizing: border-box;
             background-color: #FAFAFA;
         }
@@ -112,7 +112,7 @@ h5 {
             background-color: #E6E6E6;
         }
         &.selected {
-            border-bottom: 3px solid #B446FE;
+            border-bottom: 3px solid #141414;
             // box-sizing: border-box;
         }
         &.icon {
@@ -148,9 +148,19 @@ h5 {
     overflow-y: scroll;
     height: calc(520px - 86px);
     padding-bottom: 24px;
+    &.pets {
+        display: flex;
+        flex-wrap: wrap;
+    }
 }
 .gender, .position {
     margin-right: 24px;
+    .action {
+        text-decoration: underline;
+        display: block;
+        margin-top: 8px;
+        font-size: 14px;
+    }
 }
 .choices {
     display: flex;
@@ -165,7 +175,7 @@ h5 {
             background-color: #E6E6E6;
         }
         &.selected {
-            border-left: 3px solid #B446FE;
+            border-left: 3px solid #141414;
             box-sizing: border-box;
         }
         img {
@@ -191,7 +201,7 @@ h5 {
     box-sizing: border-box;
     border-radius: 50%;
     &.selected {
-        border: 3px solid #B446FE !important;
+        border: 3px solid #141414 !important;
     }
     &#FFFFFF {
         border: 1px solid #131313;
@@ -221,7 +231,10 @@ h5 {
         }
     }
     &.selected {
-        border-bottom: 3px solid #B446FE !important;
+        border-bottom: 3px solid #141414 !important;
+    }
+    &.pets {
+        margin: 8px 16px 0 0;
     }
 }
 
@@ -245,7 +258,7 @@ h5 {
             background-color: #FAFAFA;
         }
         &.selected {
-            border-bottom: 3px solid #B446FE !important;
+            border-bottom: 3px solid #141414 !important;
         }
     }
 }

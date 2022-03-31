@@ -78,11 +78,6 @@ export class AppComponent {
     ngOnInit() {
 
     }
-    // myClickFunction(event: any) {
-    //   html2canvas(document.querySelector(".capture-id")).then(canvas => {
-    //       document.body.appendChild(canvas)
-    //   });
-    // }
       
     @HostListener('window:message', ['$event'])
     onMessage(event) {
@@ -157,7 +152,7 @@ export class AppComponent {
         skinColor: "c",
         hairColor: "c1",
         hairStyle: "hair2",
-        shirt: "shirt",
+        shirt: "tshirt",
         shirtColor: {
           name: "c3", 
           color: "https://res.cloudinary.com/deck4daxl/image/upload/v1620147466/mugs/male/clothes/seat/shirt/green_ewuysi.png"

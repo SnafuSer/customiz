@@ -12,7 +12,7 @@
         {{ item?.name }}
       </span>
     </div>
-    <div class="tab" [ngClass]="{'selected': item.selected === true}" *ngFor="let item of listCharacters; let i = index" (click)="setActiveTab(i, 'characters')">
+    <div class="tab" [ngClass]="{'selected': item.selected === true}" *ngFor="let item of listCharacters; let i = index" (click)="setActiveTab(i, item.type)">
       <img class="icon" src="https://res.cloudinary.com/deck4daxl/image/upload/v1614616677/mugs/icons/user.png" alt="">
       <span class="text">
         {{ item?.name }}
@@ -76,7 +76,8 @@
       <div class="general-infos row">
         <div class="input-name">
           <label class="label" for="Nom">Nom</label>
-          <input type="text" name="Nom" id="Nom" [(ngModel)]="currentChar.name">
+          <input type="text" *ngIf="listCharacters.length <= 3" name="Nom" id="Nom" maxlength="12" [(ngModel)]="currentChar.name">
+          <input type="text" *ngIf="listCharacters.length > 3" name="Nom" id="Nom" maxlength="8" [(ngModel)]="currentChar.name">
         </div>
         <div class="gender">
           <span class="label">Genre</span>
@@ -95,16 +96,25 @@
         <div class="position">
           <span class="label">Position</span>
           <div class="position-choices choices">
-            <div class="choice" (click)="changePosition('1')" [ngClass]="{'selected': currentChar.position === '1'}">
+            <span class="action" (click)="changePositionMore()">Changer</span>
+            <!-- <div class="choice" (click)="changePosition('1')" [ngClass]="{'selected': currentChar.position === '1'}">
               <img src="https://res.cloudinary.com/deck4daxl/image/upload/v1614616342/mugs/icons/silhouette-1.png" alt="">
             </div>
             <div class="choice" (click)="changePosition('2')" [ngClass]="{'selected': currentChar.position === '2'}">
               <img src="https://res.cloudinary.com/deck4daxl/image/upload/v1614616342/mugs/icons/silhouette-2.png" alt="">
-            </div>
+            </div> -->
           </div>
         </div>
       </div>
-      <div class="scrollable">
+      <div class="scrollable pets" *ngIf="isPets">
+        <div class="img-choice pets" 
+            *ngFor="let item of listPets" 
+            [ngClass]="{'selected': item.public_id.includes(item.gender)}"
+            (click)="changePet(item)">
+              <img [src]="'https://res.cloudinary.com/deck4daxl/image/upload/v1614616342/' + item.public_id" alt="">
+        </div>
+      </div>
+      <div class="scrollable" *ngIf="!isPets">
         <div class="skin-infos row">
           <span class="label">Couleur de peau</span>
           <div class="colors">
